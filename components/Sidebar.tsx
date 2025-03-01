@@ -6,8 +6,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+interface SidebarProps {
+  user: { firstName: string; lastName: string };
+}
 
-const Sidebar = ({ user }: SiderbarProps) => {
+const Sidebar = ({ user }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -25,7 +28,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
         </Link>
 
         {sidebarLinks.map((item) => {
-          const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)
+          const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`);
 
           return (
             <Link href={item.route} key={item.label}
@@ -36,25 +39,22 @@ const Sidebar = ({ user }: SiderbarProps) => {
                   src={item.imgURL}
                   alt={item.label}
                   fill
-                  className={cn({
-                    'brightness-[3] invert-0': isActive
-                  })}
+                  className={cn({ 'brightness-[3] invert-0': isActive })}
                 />
               </div>
               <p className={cn("sidebar-label", { "!text-white": isActive })}>
                 {item.label}
               </p>
             </Link>
-          )
+          );
         })}
         
-       
+        USER 
       </nav>
 
-    
-    
+      FOOTER 
     </section>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
